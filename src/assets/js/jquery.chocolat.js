@@ -1,11 +1,11 @@
 /*
  Inspired by the lightbox plugin adapted to jquery by Leandro Vieira Pinho (http://leandrovieira.com)
- 
+
  @author  : Nicolas Turlais : nicolas-at-insipi.de
  @version : V0.3.1 - June 2012
  @license : Licensed under CCAttribution-ShareAlike
  @website : http://chocolat.insipi.de
- 
+
 */
 (function($) {
 	images = [];
@@ -15,29 +15,29 @@
 			container             : $('body'),
 			displayAsALink        : false,
 			linkImages            : true,
-			linksContainer        : 'Choco_links_container',				
+			linksContainer        : 'Choco_links_container',
 			overlayOpacity        : 0.9,
 			overlayColor          : '#fff',
 			fadeInOverlayduration : 500,
 			fadeInImageduration   : 500,
 			fadeOutImageduration  : 500,
-			vache                 : true,					
-			separator1            : ' | ',						
-			separator2            : '/',						
-			leftImg               : 'images/left.gif',	
-			rightImg              : 'images/right.gif',	
-			closeImg              : 'images/close.gif',		
-			loadingImg            : 'images/loading.gif',		
-			currentImage          : 0,						
+			vache                 : true,
+			separator1            : ' | ',
+			separator2            : '/',
+			leftImg               : 'images/left.gif',
+			rightImg              : 'images/right.gif',
+			closeImg              : 'images/close.gif',
+			// loadingImg            : 'images/loading.gif',
+			currentImage          : 0,
 			setIndex              : 0,
 			setTitle              : '',
 			lastImage             : 0
 		},settings);
-		
+
 		calls++;
 		settings.setIndex = calls;
 		images[settings.setIndex] = [];
-		
+
 		//images:
 		this.each(function(index){
 			if(index == 0 && settings.linkImages && settings.setTitle == ''){
@@ -57,7 +57,7 @@
 				}
 			})
 		});
-		
+
 		//setIndex:
 		for(var i = 0; i < images[settings.setIndex].length; i++)
 		{
@@ -74,9 +74,9 @@
 				return $('#Choco_numsetIndex_'+settings.setIndex).unbind('click').bind('click', {id: settings.setIndex, nom : settings.setTitle, i : settings.currentImage}, _initialise);
 			}
 		}
-		
+
 		function _initialise(event) {
-			
+
 			settings.currentImage = event.data.i;
 			settings.setIndex     = event.data.id;
 			settings.setTitle     = event.data.nom;
@@ -87,11 +87,11 @@
 		function _interface(){
 			//html
 			clear();
-			settings.container.append('<div id="Choco_overlay"></div><div id="Choco_content"><div id="Choco_close"></div><div id="Choco_loading"></div><div id="Choco_container_photo"><img id="Choco_bigImage" src="" /></div><div id="Choco_container_description"><span id="Choco_container_title"></span><span id="Choco_container_via"></span></div><div id="Choco_left_arrow" class="Choco_arrows"></div><div id="Choco_right_arrow" class="Choco_arrows"></div></div>');	
-			$('#Choco_left_arrow').css('background-image', 'url('+settings.leftImg+')');  
-			$('#Choco_right_arrow').css('background-image', 'url('+settings.rightImg+')');  
-			$('#Choco_close').css('background-image', 'url('+settings.closeImg+')'); 
-			$('#Choco_loading').css('background-image', 'url('+settings.loadingImg+')'); 
+			settings.container.append('<div id="Choco_overlay"></div><div id="Choco_content"><div id="Choco_close"></div><div id="Choco_loading"></div><div id="Choco_container_photo"><img id="Choco_bigImage" src="" /></div><div id="Choco_container_description"><span id="Choco_container_title"></span><span id="Choco_container_via"></span></div><div id="Choco_left_arrow" class="Choco_arrows"></div><div id="Choco_right_arrow" class="Choco_arrows"></div></div>');
+			$('#Choco_left_arrow').css('background-image', 'url('+settings.leftImg+')');
+			$('#Choco_right_arrow').css('background-image', 'url('+settings.rightImg+')');
+			$('#Choco_close').css('background-image', 'url('+settings.closeImg+')');
+			$('#Choco_loading').css('background-image', 'url('+settings.loadingImg+')');
 			if(settings.container.get(0).nodeName.toLowerCase() !== 'body'){
 				settings.container.css({'position':'relative','overflow':'hidden','line-height':'normal'});//yes, yes
 				$('#Choco_content').css('position','relative');
@@ -132,9 +132,9 @@
 			$(window).resize(function() {
 				load(settings.currentImage,true);
 			});
-	
+
 		}
-		function showChocolat(){	
+		function showChocolat(){
 			_interface();
 			load(settings.currentImage, false);
 			$('#Choco_overlay')
@@ -144,7 +144,7 @@
 				})
 				.fadeIn(settings.fadeInOverlayduration);
 			$('#Choco_content').fadeIn(settings.fadeInImageduration,function(){});
-			
+
 		}
 		function load(image,resize){
 			settings.currentImage = image;
@@ -265,7 +265,7 @@
 				var hblock = himg + heightDescAndClose;
 					if(lblock > windowWidth){
 						limg = windowWidth*100/128;
-						
+
 						himg = kk * limg;
 					}else if(hblock > windowHeight){
 						himg = (windowHeight - heightDescAndClose);
@@ -289,6 +289,6 @@
 			$('#Choco_content').fadeOut(500, function(){$('#Choco_content').remove()});
 			settings.currentImage = 0;
 		}
-	
+
 };
 })(jQuery);

@@ -19,9 +19,20 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+                "./assets/css/bootstrap-theme.min.css",
+                "./assets/css/bootstrap.css",
+                "./assets/css/chocolat.css",
+                "./assets/css/flexslider.css",
+                "./assets/css/form.css",
+                "./assets/css/jstarbox.css",
+                "./assets/css/popuo-box.css",
+                "./assets/css/style.css",
+                "./assets/css/style4.css",
+                "styles.css"
       ],
-      "scripts": [],
+      "scripts": [
+
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
